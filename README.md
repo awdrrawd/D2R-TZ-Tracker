@@ -19,7 +19,7 @@
 D2R_TZ_Tracker.exe : 本體
 settings.json      : 設置存檔
 Readme.txt         : 說明檔
-Data\
+Data>
      area.json     : 地區資料(d2tz提供)
      icon.ico      : icon圖片(AI繪製)
      exp.png       : 經驗值圖片(AI繪製)
@@ -56,7 +56,7 @@ D2R_TZ_Tracker.exe : Main executable
 settings.json      : Settings storage
 Readme.txt         : Documentation
 
-Data\
+Data>
     area.json     : Zone data (provided by d2tz)
     icon.ico      : Icon image (AI-generated)
     exp.png       : Experience icon (AI-generated)
