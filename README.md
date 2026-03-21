@@ -16,7 +16,6 @@
 詳細內容可以在系統匣、設置查看
 
 資料夾內容介紹
-```
 D2R_TZ_Tracker.exe : 本體
 settings.json      : 設置存檔
 Readme.txt         : 說明檔
@@ -27,7 +26,6 @@ Data\
      loot.png      : 寶箱圖片(AI繪製)
      sound.wav     : 預設提醒音效
   (來源 https://www.diablofans.com/forums/read-only-diablo-forums/diablo-legacy-forums/diablo-ii/72891-download-diablo-ii-music-cinematics-and-speech#Sounds)
-```
 本人沒編碼能力，該軟體是用AI編寫的，可能存在一些錯誤，請自行考慮是否使用
 如果不存在太致命的錯誤原則上不會進行修復
 瀧月瀨使用AI製作分享，完全免費、開源
