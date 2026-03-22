@@ -1,67 +1,69 @@
-這是一個用於D2R顯示當前與下個TZ預測的通知器
-資料來源是https://www.d2tz.info/的API
-目前使用的是社區共用API Token，如果申請個人API Token，工具也提供替換功能
+# D2R TZ Tracker
 
-有以下功能
-1. 顯示當前與下個地區的預測
-2. 可以在當前區域結束前提醒
-3. 可以把喜歡的地區添加最愛，並在該地區出在在下次預測時進行提醒
-4. 可以自訂提醒聲音
-5. 有迷你模式
-6. 可以修改UI配色
-7. 可以置頂或隱藏
-8. 可手動設置API Token
-詳細內容可以在系統匣、設置查看
+> 用於 Diablo II: Resurrected 的恐懼地區（Terror Zone）預測通知器
+> A Terror Zone prediction notifier for Diablo II: Resurrected
 
-資料夾內容介紹
-D2R_TZ_Tracker.exe : 本體
-settings.json      : 設置存檔
-Readme.txt         : 說明檔
-Data\
-     area.json     : 地區資料(d2tz提供)
-     icon.ico      : icon圖片(AI繪製)
-     exp.png       : 經驗值圖片(AI繪製)
-     loot.png      : 寶箱圖片(AI繪製)
-     sound.wav     : 預設提醒音效
-  (來源 https://www.diablofans.com/forums/read-only-diablo-forums/diablo-legacy-forums/diablo-ii/72891-download-diablo-ii-music-cinematics-and-speech#Sounds)
+---
 
-本人沒編碼能力，該軟體是用AI編寫的，可能存在一些錯誤，請自行考慮是否使用
-如果不存在太致命的錯誤原則上不會進行修復
+## 📡 資料來源 / Data Source
 
-瀧月瀨使用AI製作分享，完全免費、開源
+[https://www.d2tz.info/](https://www.d2tz.info/)
 
-=============================================================================================================================================================
+目前使用社區共用 API Token。若已申請個人 API Token，工具內提供替換功能。  
+Currently using a shared community API Token. If you have a personal API Token, the tool provides a replacement option.
 
-This is a notifier for D2R that displays current and next Terror Zone predictions.
-Data source: API Token from https://www.d2tz.info/
-Currently, the tool is using a shared community API Token, If you have applied for a personal API Token, the tool also provides a replacement function.
+---
 
+## ✨ 功能 / Features
 
-Features:
-1. Displays current and next zone predictions
-2. Reminder before the current zone ends
-3. Favorite zones can be marked, with reminders when they appear in the next prediction
-4. Customizable reminder sound
-5. Mini mode
-6. Customizable UI color theme
-7. Pin to top or hide
-8. Manual API token configuration
-For more details, please refer to the system tray and settings.
+| # | 功能 | Feature |
+|---|------|---------|
+| 1 | 顯示當前與下個恐懼地區的預測 | Displays current and next Terror Zone predictions |
+| 2 | 當前區域結束前提醒 | Reminder before the current zone ends |
+| 3 | 加入最愛地區，出現在下次預測時通知 | Favorite zones with notifications when they appear |
+| 4 | 自訂提醒音效 | Customizable reminder sound |
+| 5 | 迷你模式 | Mini mode |
+| 6 | 自訂 UI 配色 | Customizable UI color theme |
+| 7 | 視窗置頂 / 隱藏 | Pin to top or hide |
+| 8 | 手動設置 API Token | Manual API Token configuration |
 
-Contents of the folder:
-D2R_TZ_Tracker.exe : Main executable
-settings.json      : Settings storage
-Readme.txt         : Documentation
+> 更多詳細功能請參閱系統匣圖示與設置介面。  
+> For more details, refer to the system tray icon and settings panel.
 
-Data\
--    area.json     : Zone data (provided by d2tz)
--    icon.ico      : Icon image (AI-generated)
--    exp.png       : Experience icon (AI-generated)
--    loot.png      : Loot chest icon (AI-generated)
--    sound.wav     : Default reminder sound
--     (Source: https://www.diablofans.com/forums/read-only-diablo-forums/diablo-legacy-forums/diablo-ii/72891-download-diablo-ii-music-cinematics-and-speech#Sounds)
+---
 
-I have no coding experience. This software was written with AI assistance and may contain bugs. Please consider carefully before use.
+## 📁 資料夾結構 / Folder Structure
+```
+D2R_TZ_Tracker/
+│
+├── D2R_TZ_Tracker.exe   # 主程式 / Main executable
+├── settings.json        # 設置存檔 / Settings storage
+├── Readme.txt           # 說明文件 / Documentation
+│
+└── Data/
+    ├── area.json        # 地區資料（由 d2tz 提供）/ Zone data (provided by d2tz)
+    ├── icon.ico         # 圖示（AI 繪製）/ Icon (AI-generated)
+    ├── exp.png          # 經驗值圖示（AI 繪製）/ Experience icon (AI-generated)
+    ├── loot.png         # 寶箱圖示（AI 繪製）/ Loot chest icon (AI-generated)
+    └── sound.wav        # 預設提醒音效 / Default reminder sound
+```
+
+> 音效來源 / Sound source:  
+> [Diablo II Music, Cinematics and Speech](https://www.diablofans.com/forums/read-only-diablo-forums/diablo-legacy-forums/diablo-ii/72891-download-diablo-ii-music-cinematics-and-speech#Sounds)
+
+---
+
+## ⚠️ 免責聲明 / Disclaimer
+
+本人無程式編寫能力，此軟體由 AI 協助撰寫，可能存在錯誤，請自行評估是否使用。  
+若無重大致命錯誤，原則上不會進行修復更新。
+
+I have no coding experience. This software was written with AI assistance and may contain bugs. Please consider carefully before use.  
 If no critical issues are found, updates will generally not be provided.
 
-瀧月瀨 created and shared this using AI; it's completely free and open source.
+---
+
+## 📝 授權 / License
+
+瀧月瀨 使用 AI 製作並分享，**完全免費、開源**。  
+Created and shared by 瀧月瀨 using AI. **Completely free and open source.**
