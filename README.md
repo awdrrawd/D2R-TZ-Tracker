@@ -1,6 +1,7 @@
 # D2R TZ Tracker
 
 > 用於 Diablo II: Resurrected 的恐懼地區（Terror Zone）預測通知器
+> 
 > A Terror Zone prediction notifier for Diablo II: Resurrected
 
 ---
