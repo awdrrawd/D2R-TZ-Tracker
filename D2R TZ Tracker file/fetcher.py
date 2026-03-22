@@ -10,7 +10,8 @@ import sys
 # ── 常數 ──────────────────────────────────────────────────────────────────────
 API_URL_DEFAULT = "https://api.d2tz.info/public/tz"
 FETCH_TIMEOUT = 15    # 秒
-RETRY_DELAY   = 60    # 失敗後自動重試間隔（秒）
+RETRY_DELAY   = 60    # 錯誤後自動重試間隔（秒）
+RETRY_WAITING = 30    # waiting 狀態重試間隔（秒，換場空窗期）
 MAX_RETRIES   = 3     # 單次抓取最多重試次數
 
 
@@ -93,10 +94,15 @@ def fetch_tz(token: str = "", api_url: str = "", force: bool = False) -> tuple[d
     nxt_entry = data[0] if len(data) > 0 else None
     cur_entry = data[1] if len(data) > 1 else None
 
-    # 直連時客戶端自行驗證時效
-    if not is_worker and cur_entry:
-        now = int(time.time())
-        if cur_entry.get("end_time", 0) <= now:
+    # 無論來源（R2、Worker、直連）都驗證 end_time
+    # R2 可能存的是舊資料（Cron 還在重試中），需要客戶端自行判斷
+    now = int(time.time())
+    if cur_entry and cur_entry.get("end_time", 0) <= now:
+        raise TZNotReadyError(30)
+
+    # next 的 end_time 必須晚於 current，否則資料異常
+    if cur_entry and nxt_entry:
+        if nxt_entry.get("end_time", 0) <= cur_entry.get("end_time", 0):
             raise TZNotReadyError(30)
 
     cur = _build_group(cur_entry)
@@ -126,8 +132,6 @@ class TZScheduler:
       on_notify(event)
         event: '5min' | 'fav'
     """
-
-    CACHE_TTL = 35 * 60   # 35 分鐘強制刷新
 
     def __init__(self, on_update, on_notify, get_settings=None):
         self.on_update    = on_update
@@ -200,10 +204,15 @@ class TZScheduler:
             self._last_fetch_min = m
             threading.Thread(target=self._do_fetch, args=(False,), daemon=True).start()
 
-        # cache 過期或錯誤 → 自動重試（限速：至少間隔 RETRY_DELAY 秒）
-        elif (self.status in ("error", "idle") or
-              now_ts - self.fetched_at > self.CACHE_TTL):
+        # 錯誤或 idle → 自動重試（限速：至少間隔 RETRY_DELAY 秒）
+        elif self.status in ("error", "idle"):
             if now_ts - self._last_retry_at > RETRY_DELAY:
+                self._last_retry_at = now_ts
+                threading.Thread(target=self._do_fetch, args=(False,), daemon=True).start()
+
+        # waiting（換場空窗期）→ 每 30 秒重試一次
+        elif self.status == "waiting":
+            if now_ts - self._last_retry_at > RETRY_WAITING:
                 self._last_retry_at = now_ts
                 threading.Thread(target=self._do_fetch, args=(False,), daemon=True).start()
 
@@ -244,12 +253,12 @@ class TZScheduler:
                 self._check_fav_notify()
                 return
             except TZNotReadyError as e:
-                # API 尚未更新（換場空窗期），按 retry_after 安排重試，不顯示錯誤
                 print(f"[Fetcher] TZ 尚未更新，{e.retry_after} 秒後重試")
                 with self._lock:
                     self.status = "waiting"
                 self.on_update(self.cur_group, self.nxt_group, "waiting")
-                self._last_retry_at = time.time() - RETRY_DELAY + e.retry_after
+                # 讓 waiting 的重試邏輯在 retry_after 秒後觸發
+                self._last_retry_at = time.time() - RETRY_WAITING + e.retry_after
                 return
             except Exception as e:
                 print(f"[Fetcher] 第 {attempt} 次失敗: {e}")
