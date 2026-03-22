@@ -1,6 +1,6 @@
 這是一個用於D2R顯示當前與下個TZ預測的通知器
 資料來源是https://www.d2tz.info/的API
-目前使用的是社區共用API，不確定能維持到甚麼時候，如果想改用自己的專屬API也能隨時更換
+目前使用的是社區共用API Token，如果申請個人API Token，工具也提供替換功能
 
 有以下功能
 1. 顯示當前與下個地區的預測
@@ -33,9 +33,8 @@ Data\
 =============================================================================================================================================================
 
 This is a notifier for D2R that displays current and next Terror Zone predictions.
-Data source: API from https://www.d2tz.info/
-Currently, the tool is using a shared community API, so I’m not sure how long it will remain available. However,
-users can switch to their own personal API at any time if needed.
+Data source: API Token from https://www.d2tz.info/
+Currently, the tool is using a shared community API Token, If you have applied for a personal API Token, the tool also provides a replacement function.
 
 
 Features:
@@ -55,12 +54,12 @@ settings.json      : Settings storage
 Readme.txt         : Documentation
 
 Data\
-    area.json     : Zone data (provided by d2tz)
-    icon.ico      : Icon image (AI-generated)
-    exp.png       : Experience icon (AI-generated)
-    loot.png      : Loot chest icon (AI-generated)
-    sound.wav     : Default reminder sound
-     (Source: https://www.diablofans.com/forums/read-only-diablo-forums/diablo-legacy-forums/diablo-ii/72891-download-diablo-ii-music-cinematics-and-speech#Sounds)
+-    area.json     : Zone data (provided by d2tz)
+-    icon.ico      : Icon image (AI-generated)
+-    exp.png       : Experience icon (AI-generated)
+-    loot.png      : Loot chest icon (AI-generated)
+-    sound.wav     : Default reminder sound
+-     (Source: https://www.diablofans.com/forums/read-only-diablo-forums/diablo-legacy-forums/diablo-ii/72891-download-diablo-ii-music-cinematics-and-speech#Sounds)
 
 I have no coding experience. This software was written with AI assistance and may contain bugs. Please consider carefully before use.
 If no critical issues are found, updates will generally not be provided.
